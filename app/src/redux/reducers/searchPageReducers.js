@@ -20,7 +20,9 @@ const searchPageFindRepositoriesByUser = (state = initialState, action = {}) => 
             return state.merge({
                 isLoading: false,
                 payload: action.payload,
-                serverError: {},
+                serverError: {
+                    error: fromJS(action.error)
+                },
                 serverResponse: {}
             });
             break;

@@ -10,6 +10,9 @@ import SearchPageResults from '../SearchPageResults/SearchPageResults'
 //Redux action creators
 import { findRepositoriesByUserRequest } from '../../redux/actions/searchPageActions'
 
+//Service error codes
+import { errorCodes } from '../../config/services';
+
 //Styles
 import './SearchPage.scss'
 
@@ -24,6 +27,7 @@ class SearchPage extends Component {
     }
 
     static propTypes = {
+        serverErrorCode: PropTypes.string,
         isLoading: PropTypes.bool.isRequired,
         makeRepositoriesRequest: PropTypes.func.isRequired,
         repositories: PropTypes.object.isRequired //Immutable
@@ -37,9 +41,32 @@ class SearchPage extends Component {
                         <SearchPageSearchBar {...this.getSearchBarProps()} />
                     </div>
                     <div className="col-md-8 offset-md-2">
-                        <SearchPageResults {...this.getSearchResultsProps()} />
+                        {this.renderResponse()}
                     </div>
                 </div>
+            </div>
+        );
+    }
+
+    renderResponse () {
+        return (!this.props.serverErrorCode) ?
+            this.renderSearchResults() :
+            this.renderServerError();
+    }
+
+    renderSearchResults () {
+        return <SearchPageResults {...this.getSearchResultsProps()} />;
+    }
+
+    renderServerError () {
+        const errorMessages = {
+            [errorCodes.INTERNAL_ERROR]: (<span>It seems GitHub API is not working right now. Try again later.</span>),
+            [errorCodes.NOT_FOUND]: (<span>The user <strong>{this.state.searchTerm}</strong> doesn't exists.</span>)
+        };
+
+        return (
+            <div className="alert alert-warning" role="alert">
+                {errorMessages[this.props.serverErrorCode]}
             </div>
         );
     }
@@ -68,6 +95,7 @@ class SearchPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        serverErrorCode: state.searchPageFindRepositoriesByUser.getIn(['serverError', 'error', 'code'], null),
         isLoading: state.searchPageFindRepositoriesByUser.get('isLoading', false),
         repositories: state.searchPageFindRepositoriesByUser.getIn(['serverResponse', 'data'], List())
     };

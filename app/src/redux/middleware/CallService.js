@@ -19,19 +19,14 @@ export default store => next => action => {
     next(loadingAction(payload));
 
     return makeServiceRequest(service, payload)
-        .then(response => {
-            const errorMessage = _.get(response, 'message');
-
-            if (errorMessage === 'Not found') {
-                next(failureAction({code: errorMessage.NOT_FOUND}))
-            } else if (errorMessage) {
-                next(failureAction({code: errorMessage.INTERNAL_ERROR}))
+        .then(response => next(successAction({data: response})))
+        .catch(error => {
+            if (_.get(error, 'response.status') === 404) {
+                next(failureAction({code: errorCodes.NOT_FOUND}))
             } else {
-                next(successAction({data: response}));
+                next(failureAction({code: errorCodes.INTERNAL_ERROR}));
             }
-        })
-        .catch(error => next(failureAction({code: errorCodes.INTERNAL_ERROR, metadata: error})))
-
+        });
 };
 
 const makeServiceRequest = (service, payload) => {
@@ -39,8 +34,6 @@ const makeServiceRequest = (service, payload) => {
         if (service) {
             const method = service.method.toLowerCase();
             const url = (!_.isEmpty(payload.urlParams)) ? replaceUrlParams(service.url, payload.urlParams) : service.url;
-            
-            console.log(url);
             
             let axios = Axios.create({
                 baseURL: baseUrl,

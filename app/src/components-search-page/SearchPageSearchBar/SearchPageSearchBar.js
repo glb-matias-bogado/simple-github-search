@@ -33,7 +33,9 @@ export default class SearchBar extends Component {
             <div className="search-page-search-bar">
                 <div className="row">
                     <div className="col-sm-8">
-                        <Input {...this.getInputProps()} />
+                        <form {...this.getFormProps()}>
+                            <Input {...this.getInputProps()} />
+                        </form>
                         {this.renderInlineError()}
                     </div>
                     <div className="col-sm-2">
@@ -59,6 +61,13 @@ export default class SearchBar extends Component {
             null;
     }
 
+    getFormProps () {
+        return {
+            onSubmit: (event) => this.handleSearch(event),
+            name: 'search-form'
+        };
+    }
+
     getInputProps () {
         return {
             ref: 'searchInput',
@@ -68,12 +77,15 @@ export default class SearchBar extends Component {
 
     getButtonProps () {
         return {
-            onClick: this.handleSearch.bind(this)
+            onClick: (event) => this.handleSearch(event)
         };
     }
 
-    handleSearch () {
+    handleSearch (event) {
+        event.preventDefault();
+
         const inputValue = this.refs.searchInput.getValue();
+
         if (inputValue) {
             this.setState({showInlineError: false}, () => {
                 if (this.props.onSearch) {

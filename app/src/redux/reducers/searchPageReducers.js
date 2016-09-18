@@ -19,7 +19,6 @@ const searchPageFindRepositoriesByUser = (state = initialState, action = {}) => 
         case SEARCH_PAGE_FIND_REPOSITORIESS_BY_USER_FAILURE:
             return state.merge({
                 isLoading: false,
-                payload: action.payload,
                 serverError: {
                     error: fromJS(action.error)
                 },
@@ -37,7 +36,6 @@ const searchPageFindRepositoriesByUser = (state = initialState, action = {}) => 
         case SEARCH_PAGE_FIND_RESPOSITORIES_BY_USER_SUCCESS:
             return state.merge({
                 isLoading: false,
-                payload: action.payload,
                 serverError: {},
                 serverResponse: {
                     data: fromJS(action.response.data)

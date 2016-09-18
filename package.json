@@ -4,7 +4,7 @@
   "description": "A simple application that connects with GitHub API and let the user search for repositories",
   "main": "index.js",
   "scripts": {
-    "test": "",
+    "test": "mocha --compilers js:babel-core/register --require ./test/_test.helpers.js --recursive --watch",
     "start": "node server.js"
   },
   "author": "Matias Bogado",
@@ -17,6 +17,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "chai-immutable": "^1.6.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "json-loader": "^0.5.4",

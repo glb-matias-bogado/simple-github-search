@@ -1,11 +1,11 @@
-@import '../../global-styles/variables.scss';
+@import '../../global-styles/global';
 $size: 35px;
 
 .core-loader {
-    border-bottom: 4px solid $base-white;
-    border-left: 4px solid $primary-gray;
-    border-right: 4px solid $base-white;
-    border-top: 4px solid $base-white;
+    border-bottom: 4px solid $white;
+    border-left: 4px solid $gray;
+    border-right: 4px solid $white;
+    border-top: 4px solid $white;
     display: inline-block;
     font-size: $size;
     margin: 0;

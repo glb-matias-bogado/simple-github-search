@@ -1,0 +1,10 @@
+@import '../../global-styles/global';
+
+.search-page-search-bar {
+  background: $light-blue;
+  padding: 30px 20px;
+
+  &--inline-error {
+    color: $red;
+  }
+}

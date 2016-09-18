@@ -1,0 +1,45 @@
+{
+  "name": "simple-github-search",
+  "version": "0.0.1",
+  "description": "A simple application that connects with GitHub API and let the user search for repositories",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": "node server.js"
+  },
+  "author": "Matias Bogado",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "json-loader": "^0.5.4",
+    "mocha": "^3.0.2",
+    "node-sass": "^3.10.0",
+    "react-hot-loader": "^3.0.0-beta.3",
+    "redux-logger": "^2.6.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.2"
+  },
+  "dependencies": {
+    "axios": "^0.14.0",
+    "bootstrap": "^4.0.0-alpha.4",
+    "es6-promise": "^3.3.1",
+    "immutable": "^3.8.1",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.15.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
+  }
+}

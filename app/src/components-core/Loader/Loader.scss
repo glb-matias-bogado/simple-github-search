@@ -1,0 +1,50 @@
+@import '../../global-styles/variables.scss';
+$size: 35px;
+
+.core-loader {
+    border-bottom: 4px solid $base-white;
+    border-left: 4px solid $primary-gray;
+    border-right: 4px solid $base-white;
+    border-top: 4px solid $base-white;
+    display: inline-block;
+    font-size: $size;
+    margin: 0;
+    position: relative;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear;
+    border-radius: 50%;
+    width: $size;
+    height: $size;
+    text-indent: -9999px;
+
+    &:after {
+        border-radius: 50%;
+        width: $size;
+        height: $size;
+    }
+
+    @-webkit-keyframes load8 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes load8 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+}

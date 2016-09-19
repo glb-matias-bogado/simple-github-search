@@ -70,6 +70,7 @@ export default class SearchBar extends Component {
 
     getInputProps () {
         return {
+            placeholder: 'Enter a GitHub username...',
             ref: 'searchInput',
             type: 'text'
         };

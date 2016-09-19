@@ -20,6 +20,9 @@
 
 ###Run tests
 
+- I've made some unit tests as an example
+- The application doesn't have a 100% coverage (actually is far from that)
+
 ´´´
  $ npm test
 ´´´
